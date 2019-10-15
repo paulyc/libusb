@@ -397,7 +397,9 @@ typedef union _USB_NODE_CONNECTION_INFORMATION_EX_V2_FLAGS {
 	struct {
 		ULONG DeviceIsOperatingAtSuperSpeedOrHigher:1;
 		ULONG DeviceIsSuperSpeedCapableOrHigher:1;
-		ULONG ReservedMBZ:30;
+		ULONG DeviceIsOperatingAtSuperSpeedPlusOrHigher:1;
+		ULONG DeviceIsSuperSpeedPlusCapableOrHigher:1;
+		ULONG ReservedMBZ:28;
 	};
 } USB_NODE_CONNECTION_INFORMATION_EX_V2_FLAGS, *PUSB_NODE_CONNECTION_INFORMATION_EX_V2_FLAGS;
 
@@ -412,6 +414,7 @@ typedef struct _USB_NODE_CONNECTION_INFORMATION_EX_V2 {
 
 /* winusb.dll interface */
 
+/* pipe policies */
 #define SHORT_PACKET_TERMINATE	0x01
 #define AUTO_CLEAR_STALL	0x02
 #define PIPE_TRANSFER_TIMEOUT	0x03
@@ -420,6 +423,8 @@ typedef struct _USB_NODE_CONNECTION_INFORMATION_EX_V2 {
 #define AUTO_FLUSH		0x06
 #define RAW_IO			0x07
 #define MAXIMUM_TRANSFER_SIZE	0x08
+/* libusbK */
+#define ISO_ALWAYS_START_ASAP	0x21
 
 typedef enum _USBD_PIPE_TYPE {
 	UsbdPipeTypeControl,
